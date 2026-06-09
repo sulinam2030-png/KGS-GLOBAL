@@ -697,24 +697,24 @@
       </div>
     </div>
     <div>
-      <div class="contact-form">
+      <form class="contact-form" action="https://formspree.io/f/meewkojl" method="POST">
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Company Name</label>
-            <input type="text" class="form-input" placeholder="Your organization">
+            <input type="text" name="company" class="form-input" placeholder="Your organization">
           </div>
           <div class="form-group">
             <label class="form-label">Country</label>
-            <input type="text" class="form-input" placeholder="e.g. Vietnam">
+            <input type="text" name="country" class="form-input" placeholder="e.g. Vietnam">
           </div>
         </div>
         <div class="form-group">
           <label class="form-label">Contact Person & Email</label>
-          <input type="text" class="form-input" placeholder="Name · email@company.com">
+          <input type="text" name="contact" class="form-input" placeholder="Name · email@company.com">
         </div>
         <div class="form-group">
           <label class="form-label">Application / Project Type</label>
-          <select class="form-select">
+          <select name="application" class="form-select">
             <option value="">Select application</option>
             <option>Naval Vessel Commissioning</option>
             <option>Shipyard Load Testing</option>
@@ -726,14 +726,14 @@
         </div>
         <div class="form-group">
           <label class="form-label">Required Capacity (kW/kVA)</label>
-          <input type="text" class="form-input" placeholder="e.g. 4,800 kW / 6,000 kVA">
+          <input type="text" name="capacity" class="form-input" placeholder="e.g. 4,800 kW / 6,000 kVA">
         </div>
         <div class="form-group">
           <label class="form-label">Message</label>
-          <textarea class="form-textarea" placeholder="Briefly describe your project requirements..."></textarea>
+          <textarea name="message" class="form-textarea" placeholder="Briefly describe your project requirements..."></textarea>
         </div>
-        <button class="btn-primary" style="align-self:flex-start;border:none;cursor:pointer;">Send Inquiry →</button>
-      </div>
+        <button type="submit" class="btn-primary" style="align-self:flex-start;border:none;cursor:pointer;">Send Inquiry →</button>
+      </form>
     </div>
   </div>
 </section>
