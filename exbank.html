@@ -185,16 +185,16 @@
   /* snapshot-style frame for the low-resolution source photo — framed print look instead of full-bleed stretch */
   .frame-snapshot{
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:30px; padding:40px; background:#101213;
+    gap:22px; padding:28px; background:#101213;
   }
   .frame-snapshot::after{content:none;}
   .frame-snapshot img{
     position:relative; inset:auto; width:auto; height:auto;
-    max-width:440px; max-height:46vh; object-fit:contain;
+    max-width:min(86vw, 920px); max-height:74vh; object-fit:contain;
     filter:grayscale(0.85) contrast(1.15) brightness(0.95);
-    border:10px solid var(--cream);
-    box-shadow:0 24px 54px rgba(0,0,0,0.55);
-    transform:rotate(-1.6deg);
+    border:14px solid var(--cream);
+    box-shadow:0 30px 70px rgba(0,0,0,0.55);
+    transform:rotate(-0.8deg);
   }
   .frame-snapshot .grain{
     position:absolute; inset:0; pointer-events:none; opacity:.14; mix-blend-mode:overlay; z-index:1;
@@ -353,8 +353,8 @@
       <div class="grain"></div>
       <img src="images/ocean-transit-hatch.jpg" alt="EX-BANK stowed in a ship's cargo hold for ocean transit">
       <div class="caption-block">
-        <p class="loc">Ocean Transit</p>
-        <p class="proj">Stowed in the cargo hold for the voyage — one unit among hundreds of references worldwide. Field photo, taken dockside.</p>
+        <p class="loc">Dangjin → Subic</p>
+        <p class="proj">Loaded aboard a bulk carrier at Dangjin Port, Korea, this EX‑BANK was bound for HD Hyundai Heavy Industries' Subic shipyard in the Philippines — stowed in the hold for the ocean crossing.</p>
       </div>
     </div>
 
