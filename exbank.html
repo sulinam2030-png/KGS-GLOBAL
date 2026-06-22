@@ -189,13 +189,16 @@
   }
   .frame-snapshot::after{content:none;}
   .frame-snapshot img{
-    position:relative; inset:auto; width:auto; height:auto;
-    max-width:min(86vw, 920px); max-height:74vh; object-fit:contain;
+    position:relative; inset:auto;
+    width:clamp(200px, 25vw, 300px); height:clamp(150px, 19vw, 225px); object-fit:cover;
     filter:grayscale(0.85) contrast(1.15) brightness(0.95);
-    border:14px solid var(--cream);
-    box-shadow:0 30px 70px rgba(0,0,0,0.55);
-    transform:rotate(-0.8deg);
+    border:9px solid var(--cream);
+    box-shadow:0 20px 44px rgba(0,0,0,0.5);
   }
+  .snapshot-grid{ display:flex; gap:20px; flex-wrap:wrap; justify-content:center; align-items:center; }
+  .snapshot-grid img:nth-child(1){ transform:rotate(-2deg); }
+  .snapshot-grid img:nth-child(2){ transform:rotate(1deg); }
+  .snapshot-grid img:nth-child(3){ transform:rotate(-0.8deg); }
   .frame-snapshot .grain{
     position:absolute; inset:0; pointer-events:none; opacity:.14; mix-blend-mode:overlay; z-index:1;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
@@ -351,7 +354,11 @@
     <div class="pin-frame frame-snapshot">
       <p class="frame-idx">07 / 07 — IN TRANSIT</p>
       <div class="grain"></div>
-      <img src="images/ocean-transit-hatch.jpg" alt="EX-BANK stowed in a ship's cargo hold for ocean transit">
+      <div class="snapshot-grid">
+        <img src="images/ocean-transit-01.jpg" alt="EX-BANK stowed in a ship's cargo hold, angle one">
+        <img src="images/ocean-transit-02.jpg" alt="EX-BANK stowed in a ship's cargo hold, angle two">
+        <img src="images/ocean-transit-03.jpg" alt="EX-BANK stowed in a ship's cargo hold, angle three">
+      </div>
       <div class="caption-block">
         <p class="loc">Dangjin → Subic</p>
         <p class="proj">Loaded aboard a bulk carrier at Dangjin Port, Korea, this EX‑BANK was bound for HD Hyundai Heavy Industries' Subic shipyard in the Philippines — stowed in the hold for the ocean crossing.</p>
