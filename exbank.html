@@ -270,6 +270,8 @@
         <h2>Let's size your test.</h2>
         <p class="lead">Tell us the genset, transformer, or switchgear you need to qualify — kVA range, voltage, and site — and KGS's global business team will scope the right EX‑BANK configuration.</p>
         <a class="btn btn-primary" href="mailto:kgs5@k-gstar.com">Email Global Business Division →</a>
+        <button class="btn btn-outline" id="copyEmailBtn" type="button" style="margin-top:12px; background:transparent; border-color:rgba(255,255,255,0.3); color:#fff;">📋 Copy email address</button>
+        <p id="copyConfirm" style="display:none; color:var(--amber); font-size:13px; margin-top:8px;">Copied: kgs5@k-gstar.com</p>
       </div>
       <div class="info-card reveal">
         <div class="info-row"><span>Company</span><b>KGS Co., Ltd.</b></div>
@@ -295,6 +297,26 @@
   new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) bars.classList.add('is-in'); });
   }, { threshold: 0.3 }).observe(bars);
+
+  const copyBtn = document.getElementById('copyEmailBtn');
+  const copyConfirm = document.getElementById('copyConfirm');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      const email = 'kgs5@k-gstar.com';
+      try {
+        await navigator.clipboard.writeText(email);
+      } catch (err) {
+        const temp = document.createElement('textarea');
+        temp.value = email;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+      }
+      copyConfirm.style.display = 'block';
+      setTimeout(() => { copyConfirm.style.display = 'none'; }, 2500);
+    });
+  }
 </script>
 </body>
 </html>
