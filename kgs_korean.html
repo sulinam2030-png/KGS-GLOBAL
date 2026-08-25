@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KGS 주식회사 — 산업용 부하시험 장비</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Barlow+Condensed:wght@300;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #0B1929;
+    --steel:  #1E3A5F;
+    --volt:   #F5C842;
+    --volt2:  #E8B820;
+    --offwhite: #F0EDE8;
+    --mid:    #8A97A8;
+    --light:  #C8D4E0;
+    --white:  #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--offwhite);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ─────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 60px;
+    background: rgba(11,25,41,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(245,200,66,0.15);
+  }
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+  }
+  .nav-logo span { color: var(--volt); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--light);
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--volt); }
+
+  /* ── HERO ────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+    background-image: url('hero_exbank.jpg');
+    background-size: cover;
+    background-position: center 40%;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(135deg, rgba(11,25,41,0.92) 0%, rgba(11,25,41,0.82) 50%, rgba(11,25,41,0.70) 100%);
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(245,200,66,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,200,66,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-glow {
+    position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(245,200,66,0.12) 0%, transparent 65%);
+    z-index: 0;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 900px; }
+  .hero-eyebrow {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--volt);
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 32px; height: 2px; background: var(--volt);
+  }
+  .hero-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3.5rem, 8vw, 7.5rem);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .hero-title .volt { color: var(--volt); }
+  .hero-title .thin {
+    font-weight: 300; color: var(--light);
+    display: block; font-size: clamp(2rem, 4.5vw, 4.2rem);
+    letter-spacing: 0.04em;
+  }
+  .hero-sub {
+    max-width: 520px; margin: 32px 0 48px;
+    color: var(--mid); font-size: 1.05rem; line-height: 1.7;
+  }
+  .hero-cta {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--volt); color: var(--navy);
+    padding: 14px 32px; font-weight: 700; font-size: 0.88rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+  .btn-primary:hover { background: var(--volt2); transform: translateY(-2px); }
+  .btn-ghost {
+    border: 1px solid rgba(200,212,224,0.4); color: var(--light);
+    padding: 14px 32px; font-weight: 500; font-size: 0.88rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none; transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--volt); color: var(--volt); }
+
+  .hero-stats {
+    margin-top: 72px; padding-top: 40px;
+    border-top: 1px solid rgba(200,212,224,0.1);
+    display: flex; gap: 56px; flex-wrap: wrap;
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 2.4rem;
+    color: var(--volt); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem; color: var(--mid);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ── SECTION COMMON ──────────────────────── */
+  section { padding: 100px 60px; }
+  .section-eyebrow {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--volt);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--white); line-height: 1.1;
+    margin-bottom: 48px;
+  }
+
+  /* ── 제품소개 ────────────────────────────── */
+  .products { background: var(--steel); }
+  .product-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+  }
+  .product-card {
+    background: rgba(11,25,41,0.6);
+    padding: 40px 36px;
+    border-top: 3px solid transparent;
+    transition: border-color 0.25s, background 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .product-card:hover {
+    border-color: var(--volt);
+    background: rgba(11,25,41,0.9);
+  }
+  .product-kw {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 3.2rem;
+    color: var(--volt); line-height: 1;
+    margin-bottom: 4px;
+  }
+  .product-unit {
+    font-size: 0.75rem; color: var(--mid);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .product-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: 1.4rem; color: var(--white);
+    margin-bottom: 12px;
+  }
+  .product-desc { font-size: 0.88rem; color: var(--mid); line-height: 1.65; }
+  .product-tag {
+    display: inline-block; margin-top: 20px;
+    padding: 4px 10px; font-size: 0.7rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--volt);
+    border: 1px solid rgba(245,200,66,0.35);
+  }
+
+  /* ── 납품실적 ────────────────────────── */
+  .track { background: var(--navy); }
+  .track-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+  }
+  .project-list { display: flex; flex-direction: column; gap: 0; }
+  .project-item {
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(200,212,224,0.1);
+    display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start;
+  }
+  .project-flag {
+    width: 40px; height: 28px;
+    background: var(--steel);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .project-country {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--volt);
+    margin-bottom: 4px;
+  }
+  .project-title { font-weight: 500; color: var(--white); font-size: 0.95rem; margin-bottom: 6px; }
+  .project-spec {
+    font-size: 0.8rem; color: var(--mid); line-height: 1.5;
+  }
+  .project-spec strong { color: var(--light); }
+
+  .map-panel {
+    position: relative;
+    background: var(--steel);
+    padding: 40px;
+    min-height: 380px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .map-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: 1.1rem; color: var(--volt);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .world-map {
+    flex: 1; position: relative;
+  }
+  .world-map svg {
+    width: 100%; height: auto;
+    opacity: 0.35;
+  }
+  .dot-overlay {
+    position: absolute; inset: 0;
+    pointer-events: none;
+  }
+  .map-dot {
+    position: absolute;
+    width: 10px; height: 10px;
+    background: var(--volt);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(245,200,66,0.25), 0 0 16px rgba(245,200,66,0.4);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  .map-dot::after {
+    content: attr(data-label);
+    position: absolute; bottom: 16px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.65rem; color: var(--volt); white-space: nowrap;
+    letter-spacing: 0.08em; font-weight: 600;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(245,200,66,0.25), 0 0 16px rgba(245,200,66,0.4); }
+    50%       { box-shadow: 0 0 0 8px rgba(245,200,66,0.12), 0 0 28px rgba(245,200,66,0.6); }
+  }
+
+  /* ── 기술역량 ────────────────────────── */
+  .capabilities { background: rgba(30,58,95,0.35); }
+  .cap-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 32px;
+  }
+  .cap-item { display: flex; gap: 20px; }
+  .cap-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: rgba(245,200,66,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  }
+  .cap-body {}
+  .cap-title { font-weight: 600; color: var(--white); margin-bottom: 6px; font-size: 0.95rem; }
+  .cap-desc { font-size: 0.83rem; color: var(--mid); line-height: 1.6; }
+
+  /* ── 인증현황 ──────────────────────── */
+  .certs { background: var(--navy); }
+  .cert-row {
+    display: flex; flex-wrap: wrap; gap: 16px;
+  }
+  .cert-badge {
+    padding: 14px 24px;
+    border: 1px solid rgba(200,212,224,0.2);
+    display: flex; align-items: center; gap: 12px;
+    transition: border-color 0.2s;
+  }
+  .cert-badge:hover { border-color: var(--volt); }
+  .cert-badge .icon { font-size: 1.4rem; }
+  .cert-name { font-weight: 600; font-size: 0.88rem; color: var(--white); }
+  .cert-sub { font-size: 0.72rem; color: var(--mid); margin-top: 2px; }
+
+  /* ── 문의하기 ─────────────────────────────── */
+  .contact { background: var(--steel); }
+  .contact-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+  }
+  .contact-lead {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.4rem);
+    color: var(--white); line-height: 1.2; margin-bottom: 20px;
+  }
+  .contact-lead span { color: var(--volt); }
+  .contact-body { color: var(--mid); font-size: 0.92rem; line-height: 1.7; margin-bottom: 32px; }
+  .contact-details { display: flex; flex-direction: column; gap: 16px; }
+  .contact-line { display: flex; gap: 12px; align-items: flex-start; }
+  .contact-icon { font-size: 1rem; margin-top: 2px; flex-shrink: 0; }
+  .contact-text { font-size: 0.88rem; color: var(--light); }
+  .contact-text small { display: block; color: var(--mid); font-size: 0.75rem; margin-top: 2px; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); }
+  .form-input, .form-select, .form-textarea {
+    background: rgba(11,25,41,0.7);
+    border: 1px solid rgba(200,212,224,0.15);
+    color: var(--offwhite); padding: 12px 16px;
+    font-family: 'Inter', sans-serif; font-size: 0.88rem;
+    outline: none; transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--volt);
+  }
+  .form-select option { background: var(--navy); }
+  .form-textarea { resize: vertical; min-height: 100px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* ── FOOTER ──────────────────────────────── */
+  footer {
+    background: #060F1A;
+    padding: 40px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 20px;
+    border-top: 1px solid rgba(245,200,66,0.1);
+  }
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 1.2rem; color: var(--white);
+  }
+  .footer-logo span { color: var(--volt); }
+  .footer-copy { font-size: 0.75rem; color: var(--mid); }
+  .footer-cert { font-size: 0.72rem; color: var(--mid); }
+
+  /* ── RESPONSIVE ──────────────────────────── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    section { padding: 70px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    .hero-stats { gap: 32px; }
+    .track-inner { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; }
+    footer { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><img src="logo.png" alt="KGS Logo" style="height:36px;vertical-align:middle;filter:brightness(0) invert(1);"></div>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#track">Track Record</a></li>
+    <li><a href="#capabilities">Capabilities</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="btn-primary" style="font-size:0.78rem;padding:10px 22px;">문의하기</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">산업용 부하시험장비 전문제조 · 부산</div>
+    <h1 class="hero-title">
+      <span class="volt">POWER</span><br>
+      UNDER<br>
+      CONTROL.<br>
+      <span class="thin">대한민국에서 제조, 바다에서 검증된 기술</span>
+    </h1>
+    <p class="hero-sub">
+      KGS는 해군 조선소, 발전소, 핵심 산업시설에서 신뢰받는 고용량 부하시험 장비를 설계·제조합니다. 아시아-태평양과 미주 지역에 납품 실적을 보유하고 있습니다.
+    </p>
+    <div class="hero-cta">
+      <a href="#products" class="btn-primary">제품 보기</a>
+      <a href="#track" class="btn-ghost">글로벌 납품실적</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">6,000 <span style="font-size:1.4rem">kVA</span></div>
+        <div class="stat-label">최대 단일 용량</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">납품 대륙</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">Inno<span style="color:var(--light)">-Biz</span></div>
+        <div class="stat-label">정부 인증</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">UL<span style="font-size:1.4rem;color:var(--light)"> In Progress</span></div>
+        <div class="stat-label">미국 시장 진출 중</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 제품소개 -->
+<section class="products" id="products">
+  <div class="section-eyebrow">제품 라인업</div>
+  <h2 class="section-title">EX-BANK 시리즈 — 부하시험 장비</h2>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-kw">4,800</div>
+      <div class="product-unit">kW Capacity</div>
+      <div class="product-name">EX-BANK 4800</div>
+      <div class="product-desc">해군 함정 발전기 인수시험 및 지속적인 시운전 운용을 위한 중전압 저항형 부하뱅크입니다. 현장 맞춤 구성이 가능한 모듈형 패널 설계를 적용했습니다.</div>
+      <div class="product-tag">조선소 · 해군</div>
+    </div>
+    <div class="product-card">
+      <div class="product-kw">6,000</div>
+      <div class="product-unit">kVA Capacity</div>
+      <div class="product-name">EX-BANK 6000</div>
+      <div class="product-desc">조선소 및 산업시설의 대형 발전기·UPS 시험용 고용량 AC 부하뱅크입니다. OOG 화물 수송 가능하며 완전한 부하 단계 제어를 지원합니다.</div>
+      <div class="product-tag">산업 · 항만</div>
+    </div>
+    <div class="product-card">
+      <div class="product-kw">3.3</div>
+      <div class="product-unit">MVA Capacity</div>
+      <div class="product-name">EX-BANK 3300</div>
+      <div class="product-desc">발전소 시운전 및 계통 동기화 시험용 고전압 부하뱅크입니다. 각 시장별 전압 및 주파수 맞춤 구성이 가능합니다.</div>
+      <div class="product-tag">발전소 · 계통</div>
+    </div>
+    <div class="product-card">
+      <div class="product-kw">Custom</div>
+      <div class="product-unit">Engineered to Spec</div>
+      <div class="product-name">Bespoke Solutions</div>
+      <div class="product-desc">저항-유도 조합, DC 부하뱅크, 통합 AMP 시스템 등 50kW부터 멀티MW까지 모든 전압·주파수 규격에 맞는 솔루션을 설계합니다.</div>
+      <div class="product-tag">OEM · 맞춤 제작</div>
+    </div>
+  </div>
+</section>
+
+<!-- 납품실적 -->
+<section class="track" id="track">
+  <div class="section-eyebrow">글로벌 납품실적</div>
+  <h2 class="section-title">현장에서 검증된,<br>국경을 넘은 기술력.</h2>
+  <div class="track-inner">
+    <div class="project-list">
+      <div class="project-item">
+        <div class="project-flag">🇵🇪</div>
+        <div>
+          <div class="project-country">Peru</div>
+          <div class="project-title">SIMA 조선소 — 해군 함정 시운전</div>
+          <div class="project-spec">
+            <strong>EX-BANK 3300 · 3.3 MVA</strong><br>
+            20피트 특수 우든케이스(OOG) 포장으로 선적. 이키케 → 카야오 경유 페루 해군사령부 발전기 인수시험용으로 납품. 시운전 지원 엔지니어 2명 파견 포함.
+          </div>
+          <img src="peru_shipping.jpg" alt="Peru Shipment" style="margin-top:12px;width:100%;height:360px;object-fit:contain;background:#0B1929;border-left:3px solid var(--volt);">
+        </div>
+      </div>
+      <div class="project-item">
+        <div class="project-flag">🇵🇭</div>
+        <div>
+          <div class="project-country">Philippines</div>
+          <div class="project-title">수빅만 — 산업용 부하시험</div>
+          <div class="project-spec">
+            <strong>EX-BANK 6000 · 6,000 kVA</strong><br>
+            충남 당진항에서 벌크선으로 수송. 해치커버 아래 안전 선적하여 수빅만 자유무역지역으로 이송. 도착 후 시운전 및 부하 단계 시험 서비스 제공.
+          </div>
+          <img src="port_philippines.jpg" alt="Philippines Port" style="margin-top:12px;width:100%;height:360px;object-fit:contain;background:#0B1929;border-left:3px solid var(--volt);">
+        </div>
+      </div>
+      <div class="project-item">
+        <div class="project-flag">🇻🇳</div>
+        <div>
+          <div class="project-country">Vietnam</div>
+          <div class="project-title">Vinashin / HD현대 — 조선</div>
+          <div class="project-spec">
+            <strong>EX-BANK 6MVA · 4,800 kW · 1 Unit</strong><br>
+            2025년 8월 20일 20:00 부산 감천2부두 출항. HD현대 거래 채널을 통해 베트남 비나신 조선소 납품. 국내 최대 조선사와의 전략적 파트너십.
+          </div>
+          <img src="vietnam_shipping.jpg" alt="Vietnam Shipment" style="margin-top:12px;width:100%;height:360px;object-fit:contain;background:#0B1929;border-left:3px solid var(--volt);">
+        </div>
+      </div>
+      <div class="project-item">
+        <div class="project-flag">🇺🇸</div>
+        <div>
+          <div class="project-country">United States</div>
+          <div class="project-title">한화 필리 조선소 (HPSI)</div>
+          <div class="project-spec">
+            <strong>UL Certification in Progress</strong><br>
+            필라델피아 조선소 미 해군 함정 시험 프로그램용 부하뱅크 시스템 공급 중. USCG 및 NAVSEA 기준 충족을 위한 UL 인증 진행 중.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-panel">
+      <div class="map-title">⚡ 주요 납품 지역</div>
+      <!-- Simple ASCII-art style SVG world map approximation -->
+      <div class="world-map">
+        <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <!-- Simplified continent outlines -->
+          <!-- North America -->
+          <path d="M30 40 L80 35 L95 50 L90 80 L70 100 L50 105 L35 90 L20 70 Z" fill="#2E4A6B" stroke="#8A97A8" stroke-width="0.5"/>
+          <!-- South America -->
+          <path d="M65 110 L85 108 L95 120 L90 150 L75 165 L60 155 L55 135 L58 118 Z" fill="#2E4A6B" stroke="#8A97A8" stroke-width="0.5"/>
+          <!-- Europe -->
+          <path d="M165 30 L195 28 L200 45 L185 55 L165 52 L158 42 Z" fill="#2E4A6B" stroke="#8A97A8" stroke-width="0.5"/>
+          <!-- Africa -->
+          <path d="M165 58 L195 55 L205 75 L200 110 L185 120 L165 118 L155 100 L158 72 Z" fill="#2E4A6B" stroke="#8A97A8" stroke-width="0.5"/>
+          <!-- Asia -->
+          <path d="M200 28 L280 25 L310 40 L315 70 L295 85 L260 88 L230 80 L205 65 L198 45 Z" fill="#2E4A6B" stroke="#8A97A8" stroke-width="0.5"/>
+          <!-- Southeast Asia -->
+          <path d="M270 88 L295 85 L305 100 L285 110 L265 105 Z" fill="#2E4A6B" stroke="#8A97A8" stroke-width="0.5"/>
+          <!-- Australia -->
+          <path d="M290 130 L330 125 L345 145 L340 165 L310 170 L288 155 Z" fill="#2E4A6B" stroke="#8A97A8" stroke-width="0.5"/>
+          <!-- Korea highlight -->
+          <circle cx="298" cy="68" r="5" fill="rgba(245,200,66,0.2)" stroke="#F5C842" stroke-width="1"/>
+          <text x="298" y="60" fill="#F5C842" font-size="7" text-anchor="middle" font-family="sans-serif">KGS 부산</text>
+        </svg>
+        <!-- Pulsing dots -->
+        <div class="dot-overlay">
+          <!-- Peru: ~17%, 74% -->
+          <div class="map-dot" style="left:17%;top:74%;" data-label="Peru"></div>
+          <!-- Philippines: ~72%, 50% -->
+          <div class="map-dot" style="left:72%;top:50%;" data-label="Philippines"></div>
+          <!-- Vietnam: ~67%, 46% -->
+          <div class="map-dot" style="left:67%;top:46%;" data-label="Vietnam" ></div>
+          <!-- USA: ~18%, 30% -->
+          <div class="map-dot" style="left:18%;top:30%;" data-label="USA"></div>
+          <!-- Korea HQ -->
+          <div class="map-dot" style="left:74%;top:32%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,0.2)" data-label=""></div>
+        </div>
+      </div>
+      <div style="margin-top:20px;font-size:0.75rem;color:var(--mid);line-height:1.6;">
+        현재 진행 중인 프로젝트 <span style="color:var(--volt);font-weight:600">4개국</span> 아시아-태평양 및 미주 지역<br>
+        중동 및 멕시코 시장으로 확장 중
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 기술역량 -->
+<section class="capabilities" id="capabilities">
+  <div class="section-eyebrow">기술 역량</div>
+  <h2 class="section-title">Built for the Most Demanding<br>Power Environments.</h2>
+  <div style="margin-bottom:48px;display:grid;grid-template-columns:1fr 1fr;gap:3px;">
+    <img src="interior_wiring.jpg" alt="Interior Wiring" style="width:100%;height:260px;object-fit:cover;">
+    <img src="product_orange.jpg" alt="EX-BANK Product" style="width:100%;height:260px;object-fit:cover;">
+  </div>
+  <div class="cap-grid">
+    <div class="cap-item">
+      <div class="cap-icon">⚡</div>
+      <div class="cap-body">
+        <div class="cap-title">저항형 및 리액티브 부하뱅크</div>
+        <div class="cap-desc">AC 저항형, R-L 조합, DC 구성의 50kW~멀티MW 부하뱅크. 380V~13.8kV 맞춤 전압 사양 제공.</div>
+      </div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-icon">🔧</div>
+      <div class="cap-body">
+        <div class="cap-title">현장 시운전 지원</div>
+        <div class="cap-desc">인증된 KGS 엔지니어가 전 세계로 파견되어 설치, 시운전, 인수시험을 지원합니다. 다국어 기술 문서 제공 가능.</div>
+      </div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-icon">📦</div>
+      <div class="cap-body">
+        <div class="cap-title">OOG 운송 및 수출 포장</div>
+        <div class="cap-desc">OOG 화물 조정, 전략물자 자가판정, 국제 무역 법규 준수를 포함한 완전한 수출 물류 지원.</div>
+      </div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-icon">🛡️</div>
+      <div class="cap-body">
+        <div class="cap-title">규제 및 인증 대응</div>
+        <div class="cap-desc">IEC, KS, UL(진행 중) 기준 적용. 위험 환경용 방폭(EX) 사양 제공. 해군, 상업, 산업 인증 설계 대응.</div>
+      </div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-icon">💻</div>
+      <div class="cap-body">
+        <div class="cap-title">스마트 제어 및 데이터 로깅</div>
+        <div class="cap-desc">PLC 기반 자동 부하 스텝 제어 및 실시간 데이터 수집. 원격 모니터링 및 SCADA·DCS 시스템 연동 가능.</div>
+      </div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-icon">🏭</div>
+      <div class="cap-body">
+        <div class="cap-title">벤처·이노비즈 인증기업</div>
+        <div class="cap-desc">정부 인증 혁신형 중소기업. 정부 수출 지원 프로그램 및 무역 금융 대상. ISO 품질경영 적용.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 인증현황 -->
+<section class="certs" id="certifications">
+  <div class="section-eyebrow">인증 및 규격</div>
+  <h2 class="section-title">국경을 넘는 신뢰의 증명.</h2>
+  <div class="cert-row">
+    <div class="cert-badge">
+      <span class="icon">🏢</span>
+      <div>
+        <div class="cert-name">Venture Company</div>
+        <div class="cert-sub">정부 인증</div>
+      </div>
+    </div>
+    <div class="cert-badge">
+      <span class="icon">🔬</span>
+      <div>
+        <div class="cert-name">Inno-Biz</div>
+        <div class="cert-sub">기술혁신형 중소기업</div>
+      </div>
+    </div>
+    <div class="cert-badge">
+      <span class="icon">⚡</span>
+      <div>
+        <div class="cert-name">UL Listing</div>
+        <div class="cert-sub">진행 중 — 미국 시장</div>
+      </div>
+    </div>
+    <div class="cert-badge">
+      <span class="icon">🌐</span>
+      <div>
+        <div class="cert-name">IEC / KS Standards</div>
+        <div class="cert-sub">국제 전기 규격</div>
+      </div>
+    </div>
+    <div class="cert-badge">
+      <span class="icon">🚢</span>
+      <div>
+        <div class="cert-name">Naval Grade</div>
+        <div class="cert-sub">조선소 인수시험 완료</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 문의하기 -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-eyebrow">문의하기</div>
+      <div class="contact-lead">
+        파트너십을 원하신다면<br>
+        <span>KGS에 문의하세요.</span>
+      </div>
+      <div class="contact-body">
+        신규 조선소 시설 계획, 발전소 시운전, 정부 계약 공급업체 검토 등 어떤 상황이든 KGS는 완전한 수출 지원과 함께 맞춤형 솔루션을 제공합니다.
+      </div>
+      <div class="contact-details">
+        <div class="contact-line">
+          <span class="contact-icon">🏢</span>
+          <div class="contact-text">
+            KGS Co., Ltd. (주식회사 케이지에스)
+            <small>Busan, Republic of Korea</small>
+          </div>
+        </div>
+        <div class="contact-line">
+          <span class="contact-icon">🌐</span>
+          <div class="contact-text">
+            글로벌기획사업부
+            <small>해외영업 및 수출 문의</small>
+          </div>
+        </div>
+        <div class="contact-line">
+          <span class="contact-icon">📧</span>
+          <div class="contact-text">
+            kgs5@k-gstar.com
+            <small>1영업일 이내 회신</small>
+          </div>
+        </div>
+        <div class="contact-line">
+          <span class="contact-icon">✅</span>
+          <div class="contact-text">
+            이노비즈 · 벤처기업 인증 · UL 진행 중
+            <small>ISO 품질경영 적용</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <form class="contact-form" action="https://formspree.io/f/meewkojl" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">회사명</label>
+            <input type="text" name="company" class="form-input" placeholder="귀사명 입력">
+          </div>
+          <div class="form-group">
+            <label class="form-label">국가</label>
+            <input type="text" name="country" class="form-input" placeholder="예: 베트남">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">담당자 및 이메일</label>
+          <input type="text" name="contact" class="form-input" placeholder="이름 · 이메일@회사.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">용도 / 프로젝트 유형</label>
+          <select name="application" class="form-select">
+            <option value="">용도 선택</option>
+            <option>해군 함정 시운전</option>
+            <option>조선소 부하시험</option>
+            <option>발전소 시운전</option>
+            <option>산업용 발전기 시험</option>
+            <option>OEM / Integration</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">필요 용량 (kW/kVA)</label>
+          <input type="text" name="capacity" class="form-input" placeholder="예: 4,800 kW / 6,000 kVA">
+        </div>
+        <div class="form-group">
+          <label class="form-label">문의 내용</label>
+          <textarea name="message" class="form-textarea" placeholder="프로젝트 요구사항을 간략히 설명해 주세요..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="align-self:flex-start;border:none;cursor:pointer;">문의 보내기 →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><img src="logo.png" alt="KGS Logo" style="height:28px;vertical-align:middle;filter:brightness(0) invert(1);"> Co., Ltd.</div>
+  <div class="footer-copy">© 2025 KGS Co., Ltd. 무단 전재 및 재배포 금지 · 대한민국 부산</div>
+  <div class="footer-cert">Venture Certified · Inno-Biz · 글로벌기획사업부</div>
+</footer>
+
+</body>
+</html>
