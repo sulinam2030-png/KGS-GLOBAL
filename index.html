@@ -1,1 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KGS Co., Ltd. — Industrial Load Bank Equipment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Barlow+Condensed:wght@300;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  :root {
+    --navy:   #0B1929;
+    --steel:  #1E3A5F;
+    --volt:   #F5C842;
+    --volt2:  #E8B820;
+    --offwhite: #F0EDE8;
+    --mid:    #8A97A8;
+    --light:  #C8D4E0;
+    --white:  #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--offwhite);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ─────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 60px;
+    background: rgba(11,25,41,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(245,200,66,0.15);
+  }
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+  }
+  .nav-logo span { color: var(--volt); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--light);
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--volt); }
+
+  /* ── HERO ────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+    background-image: url('hero_exbank.jpg');
+    background-size: cover;
+    background-position: center 40%;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(135deg, rgba(11,25,41,0.92) 0%, rgba(11,25,41,0.82) 50%, rgba(11,25,41,0.70) 100%);
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(245,200,66,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,200,66,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-glow {
+    position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(245,200,66,0.12) 0%, transparent 65%);
+    z-index: 0;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 900px; }
+  .hero-eyebrow {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--volt);
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 32px; height: 2px; background: var(--volt);
+  }
+  .hero-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3.5rem, 8vw, 7.5rem);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .hero-title .volt { color: var(--volt); }
+  .hero-title .thin {
+    font-weight: 300; color: var(--light);
+    display: block; font-size: clamp(2rem, 4.5vw, 4.2rem);
+    letter-spacing: 0.04em;
+  }
+  .hero-sub {
+    max-width: 520px; margin: 32px 0 48px;
+    color: var(--mid); font-size: 1.05rem; line-height: 1.7;
+  }
+  .hero-cta {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--volt); color: var(--navy);
+    padding: 14px 32px; font-weight: 700; font-size: 0.88rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+  .btn-primary:hover { background: var(--volt2); transform: translateY(-2px); }
+  .btn-ghost {
+    border: 1px solid rgba(200,212,224,0.4); color: var(--light);
+    padding: 14px 32px; font-weight: 500; font-size: 0.88rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none; transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--volt); color: var(--volt); }
+
+  .hero-stats {
+    margin-top: 72px; padding-top: 40px;
+    border-top: 1px solid rgba(200,212,224,0.1);
+    display: flex; gap: 56px; flex-wrap: wrap;
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 2.4rem;
+    color: var(--volt); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem; color: var(--mid);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ── SECTION COMMON ──────────────────────── */
+  section { padding: 100px 60px; }
+  .section-eyebrow {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--volt);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--white); line-height: 1.1;
+    margin-bottom: 48px;
+  }
+
+  /* ── PRODUCTS ────────────────────────────── */
+  .products { background: var(--steel); }
+  .product-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+  }
+  .product-card {
+    background: rgba(11,25,41,0.6);
+    padding: 40px 36px;
+    border-top: 3px solid transparent;
+    transition: border-color 0.25s, background 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .product-card:hover {
+    border-color: var(--volt);
+    background: rgba(11,25,41,0.9);
+  }
+  .product-kw {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 3.2rem;
+    color: var(--volt); line-height: 1;
+    margin-bottom: 4px;
+  }
+  .product-unit {
+    font-size: 0.75rem; color: var(--mid);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .product-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: 1.4rem; color: var(--white);
+    margin-bottom: 12px;
+  }
+  .product-desc { font-size: 0.88rem; color: var(--mid); line-height: 1.65; }
+  .product-tag {
+    display: inline-block; margin-top: 20px;
+    padding: 4px 10px; font-size: 0.7rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--volt);
+    border: 1px solid rgba(245,200,66,0.35);
+  }
+
+  /* ── TRACK RECORD ────────────────────────── */
+  .track { background: var(--navy); }
+  .track-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+  }
+  .project-list { display: flex; flex-direction: column; gap: 0; }
+  .project-item {
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(200,212,224,0.1);
+    display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start;
+  }
+  .project-flag {
+    width: 40px; height: 28px;
+    background: var(--steel);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .project-country {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--volt);
+    margin-bottom: 4px;
+  }
+  .project-title { font-weight: 500; color: var(--white); font-size: 0.95rem; margin-bottom: 6px; }
+  .project-spec {
+    font-size: 0.8rem; color: var(--mid); line-height: 1.5;
+  }
+  .project-spec strong { color: var(--light); }
+
+  .map-panel {
+    position: relative;
+    background: var(--steel);
+    padding: 40px;
+    min-height: 380px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .map-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: 1.1rem; color: var(--volt);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .world-map {
+    flex: 1; position: relative;
+  }
+  .world-map svg {
+    width: 100%; height: auto;
+    opacity: 0.35;
+  }
+  .dot-overlay {
+    position: absolute; inset: 0;
+    pointer-events: none;
+  }
+  .map-dot {
+    position: absolute;
+    width: 10px; height: 10px;
+    background: var(--volt);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(245,200,66,0.25), 0 0 16px rgba(245,200,66,0.4);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  .map-dot::after {
+    content: attr(data-label);
+    position: absolute; bottom: 16px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.65rem; color: var(--volt); white-space: nowrap;
+    letter-spacing: 0.08em; font-weight: 600;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(245,200,66,0.25), 0 0 16px rgba(245,200,66,0.4); }
+    50%       { box-shadow: 0 0 0 8px rgba(245,200,66,0.12), 0 0 28px rgba(245,200,66,0.6); }
+  }
+
+  /* ── CAPABILITIES ────────────────────────── */
+  .capabilities { background: rgba(30,58,95,0.35); }
+  .cap-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 32px;
+  }
+  .cap-item { display: flex; gap: 20px; }
+  .cap-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: rgba(245,200,66,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  }
+  .cap-body {}
+  .cap-title { font-weight: 600; color: var(--white); margin-bottom: 6px; font-size: 0.95rem; }
+  .cap-desc { font-size: 0.83rem; color: var(--mid); line-height: 1.6; }
+
+  /* ── CERTIFICATIONS ──────────────────────── */
+  .certs { background: var(--navy); }
+  .cert-row {
+    display: flex; flex-wrap: wrap; gap: 16px;
+  }
+  .cert-badge {
+    padding: 14px 24px;
+    border: 1px solid rgba(200,212,224,0.2);
+    display: flex; align-items: center; gap: 12px;
+    transition: border-color 0.2s;
+  }
+  .cert-badge:hover { border-color: var(--volt); }
+  .cert-badge .icon { font-size: 1.4rem; }
+  .cert-name { font-weight: 600; font-size: 0.88rem; color: var(--white); }
+  .cert-sub { font-size: 0.72rem; color: var(--mid); margin-top: 2px; }
+
+  /* ── CONTACT ─────────────────────────────── */
+  .contact { background: var(--steel); }
+  .contact-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+  }
+  .contact-lead {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.4rem);
+    color: var(--white); line-height: 1.2; margin-bottom: 20px;
+  }
+  .contact-lead span { color: var(--volt); }
+  .contact-body { color: var(--mid); font-size: 0.92rem; line-height: 1.7; margin-bottom: 32px; }
+  .contact-details { display: flex; flex-direction: column; gap: 16px; }
+  .contact-line { display: flex; gap: 12px; align-items: flex-start; }
+  .contact-icon { font-size: 1rem; margin-top: 2px; flex-shrink: 0; }
+  .contact-text { font-size: 0.88rem; color: var(--light); }
+  .contact-text small { display: block; color: var(--mid); font-size: 0.75rem; margin-top: 2px; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); }
+  .form-input, .form-select, .form-textarea {
+    background: rgba(11,25,41,0.7);
+    border: 1px solid rgba(200,212,224,0.15);
+    color: var(--offwhite); padding: 12px 16px;
+    font-family: 'Inter', sans-serif; font-size: 0.88rem;
+    outline: none; transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--volt);
+  }
+  .form-select option { background: var(--navy); }
+  .form-textarea { resize: vertical; min-height: 100px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* ── FOOTER ──────────────────────────────── */
+  footer {
+    background: #060F1A;
+    padding: 40px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 20px;
+    border-top: 1px solid rgba(245,200,66,0.1);
+  }
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 1.2rem; color: var(--white);
+  }
+  .footer-logo span { color: var(--volt); }
+  .footer-copy { font-size: 0.75rem; color: var(--mid); }
+  .footer-cert { font-size: 0.72rem; color: var(--mid); }
+
+  /* ── RESPONSIVE ──────────────────────────── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    section { padding: 70px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    .hero-stats { gap: 32px; }
+    .track-inner { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; }
+    footer { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><img src="logo.png" alt="KGS Logo" style="height:36px;vertical-align:middle;filter:brightness(0) invert(1);"></div>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#track">Track Record</a></li>
+    <li><a href="#capabilities">Capabilities</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="btn-primary" style="font-size:0.78rem;padding:10px 22px;">Inquire Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Industrial Load Bank Equipment · Busan, Korea</div>
+    <h1 class="hero-title">
+      <span class="volt">POWER</span><br>
+      UNDER<br>
+      CONTROL.<br>
+      <span class="thin">Built in Korea,<br>Proven Worldwide.</span>
+    </h1>
+    <p class="hero-sub">
+      KGS designs and manufactures high-capacity load bank testing systems trusted by naval shipyards, power plants, and critical infrastructure operators across the Asia-Pacific and Americas.
+    </p>
+    <div class="hero-cta">
+      <a href="#products" class="btn-primary">View Products</a>
+      <a href="#track" class="btn-ghost">Global Track Record</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">6,000 <span style="font-size:1.4rem">kVA</span></div>
+        <div class="stat-label">Max Single Unit</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Active Deliveries</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">Inno<span style="color:var(--light)">-Biz</span></div>
+        <div class="stat-label">Gov. Certified</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">UL<span style="font-size:1.4rem;color:var(--light)"> In Progress</span></div>
+        <div class="stat-label">US Market Certification</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="section-eyebrow">Product Lineup</div>
+  <h2 class="section-title">EX-BANK Series — Load Bank Equipment</h2>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-kw">4,800</div>
+      <div class="product-unit">kW Capacity</div>
+      <div class="product-name">EX-BANK 4800</div>
+      <div class="product-desc">Medium-voltage resistive load bank for naval vessel generator acceptance testing and continuous commissioning operations. Features a modular panel design for site-specific configuration.</div>
+      <div class="product-tag">Shipyard · Naval</div>
+    </div>
+    <div class="product-card">
+      <div class="product-kw">6,000</div>
+      <div class="product-unit">kVA Capacity</div>
+      <div class="product-name">EX-BANK 6000</div>
+      <div class="product-desc">High-capacity AC load bank for large-scale generator and UPS testing at shipyards and industrial facilities. OOG cargo transport capable with full load step control.</div>
+      <div class="product-tag">Industrial · Port</div>
+    </div>
+    <div class="product-card">
+      <div class="product-kw">3.3</div>
+      <div class="product-unit">MVA Capacity</div>
+      <div class="product-name">EX-BANK 3300</div>
+      <div class="product-desc">High-voltage load bank for power plant commissioning and grid synchronization testing. Custom voltage and frequency configuration available for each market.</div>
+      <div class="product-tag">Power Plant · Grid</div>
+    </div>
+    <div class="product-card">
+      <div class="product-kw">Custom</div>
+      <div class="product-unit">Engineered to Spec</div>
+      <div class="product-name">Bespoke Solutions</div>
+      <div class="product-desc">Resistive-inductive combinations, DC load banks, and integrated AMP systems — engineered from 50kW to multi-MW for any voltage or frequency standard.</div>
+      <div class="product-tag">OEM · Custom Build</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACK RECORD -->
+<section class="track" id="track">
+  <div class="section-eyebrow">Global Track Record</div>
+  <h2 class="section-title">Proven in the Field,<br>Across Borders.</h2>
+  <div class="track-inner">
+    <div class="project-list">
+      <div class="project-item">
+        <div class="project-flag">🇵🇪</div>
+        <div>
+          <div class="project-country">Peru</div>
+          <div class="project-title">SIMA Shipyard — Naval Vessel Commissioning</div>
+          <div class="project-spec">
+            <strong>EX-BANK 3300 · 3.3 MVA</strong><br>
+            Shipped in 20-ft wooden OOG casing via Iquique → Callao for Peruvian Navy generator acceptance testing. Includes 2-engineer on-site commissioning dispatch.
+          </div>
+          <img src="peru_shipping.jpg" alt="Peru Shipment" style="margin-top:12px;width:100%;height:360px;object-fit:contain;background:#0B1929;border-left:3px solid var(--volt);">
+        </div>
+      </div>
+      <div class="project-item">
+        <div class="project-flag">🇵🇭</div>
+        <div>
+          <div class="project-country">Philippines</div>
+          <div class="project-title">Subic Bay — Industrial Load Testing</div>
+          <div class="project-spec">
+            <strong>EX-BANK 6000 · 6,000 kVA</strong><br>
+            Transported by bulk carrier from Dangjin Port. Safely stowed below hatch cover for delivery to Subic Bay Freeport. Full commissioning and load step testing services provided on arrival.
+          </div>
+          <img src="port_philippines.jpg" alt="Philippines Port" style="margin-top:12px;width:100%;height:360px;object-fit:contain;background:#0B1929;border-left:3px solid var(--volt);">
+        </div>
+      </div>
+      <div class="project-item">
+        <div class="project-flag">🇻🇳</div>
+        <div>
+          <div class="project-country">Vietnam</div>
+          <div class="project-title">Vinashin / HD Hyundai — Shipbuilding</div>
+          <div class="project-spec">
+            <strong>EX-BANK 6MVA · 4,800 kW · 1 Unit</strong><br>
+            Departed Busan Gamcheon Pier No.2. Safely stowed below hatch cover for delivery to Vinashin Shipyard, Vietnam. Strategic partnership with Korea's leading shipbuilder.
+          </div>
+          <img src="vietnam_shipping.jpg" alt="Vietnam Shipment" style="margin-top:12px;width:100%;height:360px;object-fit:contain;background:#0B1929;border-left:3px solid var(--volt);">
+        </div>
+      </div>
+      <div class="project-item">
+        <div class="project-flag">🇺🇸</div>
+        <div>
+          <div class="project-country">United States</div>
+          <div class="project-title">Hanwha Philly Shipyard (HPSI)</div>
+          <div class="project-spec">
+            <strong>UL Certification In Progress</strong><br>
+            Preparing load bank systems for US Navy vessel testing program at Philadelphia Shipyard. UL listing underway to meet USCG and NAVSEA standards.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-panel">
+      <div class="map-title">⚡ Active Deployment Regions</div>
+      <div class="world-map">
+        <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <path d="M30 40 L80 35 L95 50 L90 80 L70 100 L50 105 L35 90 L20 70 Z" fill="#2E4A6B" stroke="#8A97A8" stroke-width="0.5"/>
+          <path d="M65 110 L85 108 L95 120 L90 150 L75 165 L60 155 L55 135 L58 118 Z" fill="#2E4A6B" stroke="#8A97A8" stroke-width="0.5"/>
+          <path d="M165 30 L195 28 L200 45 L185 55 L165 52 L158 42 Z" fill="#2E4A6B" stroke="#8A97A8" stroke-width="0.5"/>
+          <path d="M165 58 L195 55 L205 75 L200 110 L185 120 L165 118 L155 100 L158 72 Z" fill="#2E4A6B" stroke="#8A97A8" stroke-width="0.5"/>
+          <path d="M200 28 L280 25 L310 40 L315 70 L295 85 L260 88 L230 80 L205 65 L198 45 Z" fill="#2E4A6B" stroke="#8A97A8" stroke-width="0.5"/>
+          <path d="M270 88 L295 85 L305 100 L285 110 L265 105 Z" fill="#2E4A6B" stroke="#8A97A8" stroke-width="0.5"/>
+          <path d="M290 130 L330 125 L345 145 L340 165 L310 170 L288 155 Z" fill="#2E4A6B" stroke="#8A97A8" stroke-width="0.5"/>
+          <circle cx="298" cy="68" r="5" fill="rgba(245,200,66,0.2)" stroke="#F5C842" stroke-width="1"/>
+          <text x="298" y="60" fill="#F5C842" font-size="7" text-anchor="middle" font-family="sans-serif">KGS Busan</text>
+        </svg>
+        <div class="dot-overlay">
+          <div class="map-dot" style="left:17%;top:74%;" data-label="Peru"></div>
+          <div class="map-dot" style="left:72%;top:50%;" data-label="Philippines"></div>
+          <div class="map-dot" style="left:67%;top:46%;" data-label="Vietnam"></div>
+          <div class="map-dot" style="left:18%;top:30%;" data-label="USA"></div>
+          <div class="map-dot" style="left:74%;top:32%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,0.2)" data-label=""></div>
+        </div>
+      </div>
+      <div style="margin-top:20px;font-size:0.75rem;color:var(--mid);line-height:1.6;">
+        Active projects in <span style="color:var(--volt);font-weight:600">4 countries</span> across Asia-Pacific and the Americas.<br>
+        Expanding into Middle East and Mexico markets.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section class="capabilities" id="capabilities">
+  <div class="section-eyebrow">Technical Capabilities</div>
+  <h2 class="section-title">Engineering Built for the<br>Most Demanding Power Environments.</h2>
+  <div style="margin-bottom:48px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;">
+    <img src="capabilities_wiring.jpg" alt="Interior Wiring" style="width:100%;height:260px;object-fit:cover;">
+    <img src="product_orange.jpg" alt="EX-BANK Product" style="width:100%;height:260px;object-fit:contain;background:#0B1929;">
+    <img src="capabilities_lifting.jpg" alt="Shipyard Lifting" style="width:100%;height:260px;object-fit:cover;object-position:center 40%;">
+  </div>
+  <div class="cap-grid">
+    <div class="cap-item">
+      <div class="cap-icon">⚡</div>
+      <div class="cap-body">
+        <div class="cap-title">Resistive &amp; Reactive Load Banks</div>
+        <div class="cap-desc">AC resistive, R-L combined, and DC configurations from 50kW to multi-MW. Custom voltage ratings from 380V to 13.8kV.</div>
+      </div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-icon">🔧</div>
+      <div class="cap-body">
+        <div class="cap-title">On-Site Commissioning Support</div>
+        <div class="cap-desc">Certified KGS engineers deployed globally for installation, commissioning, and acceptance testing. Multilingual technical documentation available.</div>
+      </div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-icon">📦</div>
+      <div class="cap-body">
+        <div class="cap-title">OOG Shipping &amp; Export Packaging</div>
+        <div class="cap-desc">Full export logistics including OOG cargo coordination, strategic goods self-classification, and international trade compliance.</div>
+      </div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-icon">🛡️</div>
+      <div class="cap-body">
+        <div class="cap-title">Regulatory &amp; Certification Compliance</div>
+        <div class="cap-desc">IEC, KS, and UL (in progress) standards applied. Explosion-proof (EX) ratings for hazardous environments. Naval, commercial, and industrial design variants.</div>
+      </div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-icon">💻</div>
+      <div class="cap-body">
+        <div class="cap-title">Smart Control &amp; Data Logging</div>
+        <div class="cap-desc">PLC-based automatic step-load control with real-time data acquisition. Remote monitoring and SCADA/DCS system integration supported.</div>
+      </div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-icon">🏭</div>
+      <div class="cap-body">
+        <div class="cap-title">Venture &amp; Inno-Biz Certified</div>
+        <div class="cap-desc">Government-certified innovative SME. Eligible for government export support programs and trade finance. ISO quality management applied.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="certs" id="certifications">
+  <div class="section-eyebrow">Certifications &amp; Standards</div>
+  <h2 class="section-title">Credentials That Cross Borders.</h2>
+  <div class="cert-row">
+    <div class="cert-badge">
+      <span class="icon">🏢</span>
+      <div>
+        <div class="cert-name">Venture Company</div>
+        <div class="cert-sub">Government Certified</div>
+      </div>
+    </div>
+    <div class="cert-badge">
+      <span class="icon">🔬</span>
+      <div>
+        <div class="cert-name">Inno-Biz</div>
+        <div class="cert-sub">Technology-Innovative SME</div>
+      </div>
+    </div>
+    <div class="cert-badge">
+      <span class="icon">⚡</span>
+      <div>
+        <div class="cert-name">UL Listing</div>
+        <div class="cert-sub">In Progress — US Market</div>
+      </div>
+    </div>
+    <div class="cert-badge">
+      <span class="icon">🌐</span>
+      <div>
+        <div class="cert-name">IEC / KS Standards</div>
+        <div class="cert-sub">International Electrical Standards</div>
+      </div>
+    </div>
+    <div class="cert-badge">
+      <span class="icon">🚢</span>
+      <div>
+        <div class="cert-name">Naval Grade</div>
+        <div class="cert-sub">Shipyard Acceptance Tested</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-eyebrow">Contact Us</div>
+      <div class="contact-lead">
+        Looking for a partnership?<br>
+        <span>Get in touch with KGS.</span>
+      </div>
+      <div class="contact-body">
+        Whether you're planning a new shipyard facility, power plant commissioning, or evaluating suppliers for a government contract — KGS delivers bespoke solutions with full export support.
+      </div>
+      <div class="contact-details">
+        <div class="contact-line">
+          <span class="contact-icon">🏢</span>
+          <div class="contact-text">
+            KGS Co., Ltd. (주식회사 케이지에스)
+            <small>Busan, Republic of Korea</small>
+          </div>
+        </div>
+        <div class="contact-line">
+          <span class="contact-icon">🌐</span>
+          <div class="contact-text">
+            Global Planning &amp; Business Division
+            <small>International Sales &amp; Export Inquiries</small>
+          </div>
+        </div>
+        <div class="contact-line">
+          <span class="contact-icon">📧</span>
+          <div class="contact-text">
+            kgs5@k-gstar.com
+            <small>Response within 1 business day</small>
+          </div>
+        </div>
+        <div class="contact-line">
+          <span class="contact-icon">✅</span>
+          <div class="contact-text">
+            Inno-Biz · Venture Certified · UL In Progress
+            <small>ISO Quality Management Applied</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <form class="contact-form" action="https://formspree.io/f/meewkojl" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Company</label>
+            <input type="text" name="company" class="form-input" placeholder="Company name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Country</label>
+            <input type="text" name="country" class="form-input" placeholder="e.g. Vietnam">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Contact &amp; Email</label>
+          <input type="text" name="contact" class="form-input" placeholder="Name · email@company.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Application / Project Type</label>
+          <select name="application" class="form-select">
+            <option value="">Select application</option>
+            <option>Naval Vessel Commissioning</option>
+            <option>Shipyard Load Testing</option>
+            <option>Power Plant Commissioning</option>
+            <option>Industrial Generator Testing</option>
+            <option>OEM / Integration</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Required Capacity (kW/kVA)</label>
+          <input type="text" name="capacity" class="form-input" placeholder="e.g. 4,800 kW / 6,000 kVA">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea name="message" class="form-textarea" placeholder="Please briefly describe your project requirements..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="align-self:flex-start;border:none;cursor:pointer;">Send Inquiry →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><img src="logo.png" alt="KGS Logo" style="height:28px;vertical-align:middle;filter:brightness(0) invert(1);"> Co., Ltd.</div>
+  <div class="footer-copy">© 2025 KGS Co., Ltd. All rights reserved · Busan, Republic of Korea</div>
+  <div class="footer-cert">Venture Certified · Inno-Biz · Global Planning &amp; Business Division</div>
+</footer>
+
+</body>
+</html>
