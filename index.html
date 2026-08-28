@@ -1,1 +1,94 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KGS Co., Ltd. — Industrial Load Bank Equipment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Barlow+Condensed:wght@300;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy:#0B1929;--steel:#1E3A5F;--volt:#F5C842;--volt2:#E8B820;
+    --offwhite:#F0EDE8;--mid:#8A97A8;--light:#C8D4E0;--white:#FFFFFF;
+  }
+  html{scroll-behavior:smooth;}
+  body{background:var(--navy);color:var(--offwhite);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 60px;background:rgba(11,25,41,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(245,200,66,0.15);}
+  .nav-links{display:flex;gap:36px;list-style:none;}
+  .nav-links a{text-decoration:none;color:var(--light);font-size:0.82rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--volt);}
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 60px 80px;position:relative;overflow:hidden;background-image:url('hero_exbank.jpg');background-size:cover;background-position:center 40%;}
+  .hero::before{content:'';position:absolute;inset:0;z-index:0;background:linear-gradient(135deg,rgba(11,25,41,0.92) 0%,rgba(11,25,41,0.82) 50%,rgba(11,25,41,0.70) 100%);}
+  .hero-grid-bg{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(245,200,66,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(245,200,66,0.04) 1px,transparent 1px);background-size:60px 60px;}
+  .hero-glow{position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(245,200,66,0.12) 0%,transparent 65%);z-index:0;}
+  .hero-content{position:relative;z-index:1;max-width:900px;}
+  .hero-eyebrow{font-size:0.75rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--volt);margin-bottom:24px;display:flex;align-items:center;gap:12px;}
+  .hero-eyebrow::before{content:'';display:block;width:32px;height:2px;background:var(--volt);}
+  .hero-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(3.5rem,8vw,7.5rem);line-height:0.92;letter-spacing:-0.01em;color:var(--white);margin-bottom:12px;}
+  .hero-title .volt{color:var(--volt);}
+  .hero-title .thin{font-weight:300;color:var(--light);display:block;font-size:clamp(2rem,4.5vw,4.2rem);letter-spacing:0.04em;}
+  .hero-sub{max-width:520px;margin:32px 0 48px;color:var(--mid);font-size:1.05rem;line-height:1.7;}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn-primary{background:var(--volt);color:var(--navy);padding:14px 32px;font-weight:700;font-size:0.88rem;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:background 0.2s,transform 0.15s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));}
+  .btn-primary:hover{background:var(--volt2);transform:translateY(-2px);}
+  .btn-ghost{border:1px solid rgba(200,212,224,0.4);color:var(--light);padding:14px 32px;font-weight:500;font-size:0.88rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:border-color 0.2s,color 0.2s;}
+  .btn-ghost:hover{border-color:var(--volt);color:var(--volt);}
+  .hero-stats{margin-top:72px;padding-top:40px;border-top:1px solid rgba(200,212,224,0.1);display:flex;gap:56px;flex-wrap:wrap;}
+  .stat-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:2.4rem;color:var(--volt);line-height:1;}
+  .stat-label{font-size:0.75rem;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;}
+  section{padding:100px 60px;}
+  .section-eyebrow{font-size:0.72rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--volt);margin-bottom:16px;}
+  .section-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(2rem,4vw,3rem);color:var(--white);line-height:1.1;margin-bottom:48px;}
+  .products{background:var(--steel);}
+  .product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;}
+  .product-card{background:rgba(11,25,41,0.6);padding:40px 36px;border-top:3px solid transparent;transition:border-color 0.25s,background 0.25s;}
+  .product-card:hover{border-color:var(--volt);background:rgba(11,25,41,0.9);}
+  .product-kw{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:3.2rem;color:var(--volt);line-height:1;margin-bottom:4px;}
+  .product-unit{font-size:0.75rem;color:var(--mid);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:20px;}
+  .product-name{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1.4rem;color:var(--white);margin-bottom:12px;}
+  .product-desc{font-size:0.88rem;color:var(--mid);line-height:1.65;}
+  .product-tag{display:inline-block;margin-top:20px;padding:4px 10px;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--volt);border:1px solid rgba(245,200,66,0.35);}
+  .track{background:var(--navy);}
+  .track-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+  .project-list{display:flex;flex-direction:column;gap:0;}
+  .project-item{padding:28px 0;border-bottom:1px solid rgba(200,212,224,0.1);display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;}
+  .project-flag{width:40px;height:28px;background:var(--steel);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;margin-top:2px;}
+  .project-country{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--volt);margin-bottom:4px;}
+  .project-title{font-weight:500;color:var(--white);font-size:0.95rem;margin-bottom:6px;}
+  .project-spec{font-size:0.8rem;color:var(--mid);line-height:1.5;}
+  .project-spec strong{color:var(--light);}
+  .map-panel{background:var(--steel);padding:40px;min-height:380px;display:flex;flex-direction:column;justify-content:space-between;}
+  .map-title{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1.1rem;color:var(--volt);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:24px;}
+  .world-map{flex:1;position:relative;}
+  .world-map svg{width:100%;height:auto;opacity:0.35;}
+  .dot-overlay{position:absolute;inset:0;pointer-events:none;}
+  .map-dot{position:absolute;width:10px;height:10px;background:var(--volt);border-radius:50%;box-shadow:0 0 0 4px rgba(245,200,66,0.25),0 0 16px rgba(245,200,66,0.4);animation:pulse 2.4s ease-in-out infinite;}
+  .map-dot::after{content:attr(data-label);position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-size:0.65rem;color:var(--volt);white-space:nowrap;letter-spacing:0.08em;font-weight:600;}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(245,200,66,0.25),0 0 16px rgba(245,200,66,0.4);}50%{box-shadow:0 0 0 8px rgba(245,200,66,0.12),0 0 28px rgba(245,200,66,0.6);}}
+  .capabilities{background:rgba(30,58,95,0.35);}
+  .cap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;}
+  .cap-item{display:flex;gap:20px;}
+  .cap-icon{width:44px;height:44px;flex-shrink:0;background:rgba(245,200,66,0.12);display:flex;align-items:center;justify-content:center;font-size:1.3rem;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));}
+  .cap-title{font-weight:600;color:var(--white);margin-bottom:6px;font-size:0.95rem;}
+  .cap-desc{font-size:0.83rem;color:var(--mid);line-height:1.6;}
+  .certs{background:var(--navy);}
+  .cert-row{display:flex;flex-wrap:wrap;gap:16px;}
+  .cert-badge{padding:14px 24px;border:1px solid rgba(200,212,224,0.2);display:flex;align-items:center;gap:12px;transition:border-color 0.2s;}
+  .cert-badge:hover{border-color:var(--volt);}
+  .cert-badge .icon{font-size:1.4rem;}
+  .cert-name{font-weight:600;font-size:0.88rem;color:var(--white);}
+  .cert-sub{font-size:0.72rem;color:var(--mid);margin-top:2px;}
+  .contact{background:var(--steel);}
+  .contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+  .contact-lead{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(1.6rem,3vw,2.4rem);color:var(--white);line-height:1.2;margin-bottom:20px;}
+  .contact-lead span{color:var(--volt);}
+  .contact-body{color:var(--mid);font-size:0.92rem;line-height:1.7;margin-bottom:32px;}
+  .contact-details{display:flex;flex-direction:column;gap:16px;}
+  .contact-line{display:flex;gap:12px;align-items:flex-start;}
+  .contact-icon{font-size:1rem;margin-top:2px;flex-shrink:0;}
+  .contact-text{font-size:0.88rem;color:var(--light);}
+  .contact-text small{display:block;color:var(--mid);font-size:0.75rem;margin-top:2px;}
+  .contact-form{display:flex;flex-direction:column;gap:16px;}
+  .form-group{display:flex;flex-direction:column;gap:6px;}
+  .form-label{font-size:0.72rem;letter-spacing:0.12em;text-transform
